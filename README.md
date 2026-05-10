@@ -6,6 +6,16 @@ It does not use ML frameworks.
 ## Install
 
 ```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+On macOS or Linux:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -62,8 +72,9 @@ python train_xor.py
 import pandas as pd
 
 from neural_net import NeuralNetwork
+from train_xor import read_data_csv
 
-data = pd.read_csv("my_data.csv")
+data = read_data_csv("my_data.csv")
 
 network = NeuralNetwork(
     layer_sizes=[3, 8, 1],
@@ -104,8 +115,8 @@ count, and the middle numbers are hidden layers. For example:
 
 You can also tune:
 
-- `hidden_activation`: `"relu"` or `"sigmoid"`
-- `output_activation`: `"sigmoid"` or `"linear"`
+- `hidden_activation`: `"relu"`, `"sigmoid"`, or `"tanh"`
+- `output_activation`: `"sigmoid"`, `"tanh"`, or `"linear"`
 - `epochs`
 - `learning_rate`
 

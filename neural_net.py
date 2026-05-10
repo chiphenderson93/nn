@@ -28,6 +28,17 @@ def sigmoid_derivative(values: Array) -> Array:
     return activated * (1.0 - activated)
 
 
+def tanh(values: Array) -> Array:
+    """Return the hyperbolic tangent activation for each value in an array."""
+    return np.tanh(values)
+
+
+def tanh_derivative(values: Array) -> Array:
+    """Return the derivative of tanh for each pre-activation value."""
+    activated = tanh(values)
+    return 1.0 - activated**2
+
+
 def relu(values: Array) -> Array:
     """Return the rectified linear activation for each value in an array."""
     return np.maximum(0.0, values)
@@ -70,6 +81,7 @@ def train_test_dataframe(
 
 ACTIVATIONS: dict[str, tuple[Callable[[Array], Array], Callable[[Array], Array]]] = {
     "sigmoid": (sigmoid, sigmoid_derivative),
+    "tanh": (tanh, tanh_derivative),
     "relu": (relu, relu_derivative),
     "linear": (linear, linear_derivative),
 }
